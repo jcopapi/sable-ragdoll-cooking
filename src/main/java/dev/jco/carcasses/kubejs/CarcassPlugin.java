@@ -21,7 +21,11 @@ public final class CarcassPlugin implements KubeJSPlugin {
         }
     }
     @Override public void registerBindings(BindingRegistry b) {
-        if(b.type()==ScriptType.SERVER) b.add("Carcasses",new Api(generation));
+        if(b.type()==ScriptType.SERVER) {
+            var api=new Api(generation);
+            b.add("rcooking",api);
+            b.add("Carcasses",api); // Preserve existing packs; new scripts use rcooking.
+        }
     }
     public final class Api {
         private final long current;

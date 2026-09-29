@@ -152,7 +152,7 @@ public final class CarcassRuntime {
         event.setCanceled(true);var data=CarcassData.get(level);var e=data.entries.get(carrier.getUUID());
         if(e==null){carrier.discard();return;}var adapter=Carcasses.adapter(e.adapter);if(adapter==null||e.committing)return;
         if(e.finishing){finalize(level,carrier,e,adapter,data);return;}
-        var d=Carcasses.definitions().get(e.definition);if(d==null){refund(e);data.setDirty();return;}
+        var d=Carcasses.definitions().get(e.definition);if(d==null){refund(e);data.setDirty();finalize(level,carrier,e,adapter,data);return;}
         if(!e.fingerprint.equals(d.fingerprint())){e.worker=null;e.fingerprint=d.fingerprint();data.setDirty();}
         if(!adapter.ready(level,carrier)) {
             e.launchAge++;data.setDirty();

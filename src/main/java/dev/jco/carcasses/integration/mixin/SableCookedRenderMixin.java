@@ -5,6 +5,9 @@ import dev.jco.carcasses.client.CarcassOverlay;
 import dev.jco.carcasses.client.Darkened;
 import dev.leo.sableplayerragdoll.mob.block.entity.MobRagdollPartBlockEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
@@ -19,5 +22,10 @@ public abstract class SableCookedRenderMixin {
     private MultiBufferSource jco$tint(MultiBufferSource buffer,MobRagdollPartBlockEntity part,float partial,PoseStack pose,MultiBufferSource original,int light,int overlay) {
         float amount=part.sourceEntityId()==null?0:CarcassOverlay.cooking(part.sourceEntityId());if(amount<=0)return buffer;
         return type->new Darkened(buffer.getBuffer(type),amount);
+    }
+    /** A restored Sable fallback model can retain the fatal hit's HurtTime forever. */
+    @Redirect(method="renderReplay",at=@At(value="INVOKE",target="Lnet/minecraft/client/renderer/entity/LivingEntityRenderer;getOverlayCoords(Lnet/minecraft/world/entity/LivingEntity;F)I"))
+    private int jco$clearFrozenDamageOverlay(LivingEntity entity,float whiteOverlay){
+        return OverlayTexture.NO_OVERLAY;
     }
 }
