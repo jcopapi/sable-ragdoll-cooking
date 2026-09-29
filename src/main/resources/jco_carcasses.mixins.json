@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "dev.jco.carcasses.integration.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "SableInteractionMixin",
+    "LootAccess",
+    "ReactionDamageMixin",
+    "ReactionLaunchMixin",
+    "PendingReactionMixin",
+    "CarcassHoldMixin",
+    "SableAccess",
+    "CampfireFuelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "SableCookedRenderMixin",
+    "SableGrabTargetMixin"
+  ]
+}

@@ -1,0 +1,5 @@
+package dev.jco.carcasses;
+import net.minecraft.core.BlockPos;import net.minecraft.network.RegistryFriendlyByteBuf;import net.minecraft.network.codec.StreamCodec;import net.minecraft.network.protocol.common.custom.CustomPacketPayload;import net.minecraft.resources.ResourceLocation;import net.minecraft.world.item.ItemStack;
+public record FuelPayload(String dimension,BlockPos pos,long remaining,long total,boolean lit,ItemStack fuel) implements CustomPacketPayload {
+ public static final Type<FuelPayload> TYPE=new Type<>(ResourceLocation.parse("jco_carcasses:fuel"));public static final StreamCodec<RegistryFriendlyByteBuf,FuelPayload> CODEC=new StreamCodec<>(){public FuelPayload decode(RegistryFriendlyByteBuf b){return new FuelPayload(b.readUtf(256),b.readBlockPos(),b.readVarLong(),b.readVarLong(),b.readBoolean(),ItemStack.OPTIONAL_STREAM_CODEC.decode(b));}public void encode(RegistryFriendlyByteBuf b,FuelPayload p){b.writeUtf(p.dimension,256);b.writeBlockPos(p.pos);b.writeVarLong(p.remaining);b.writeVarLong(p.total);b.writeBoolean(p.lit);ItemStack.OPTIONAL_STREAM_CODEC.encode(b,p.fuel);}};public Type<FuelPayload> type(){return TYPE;}
+}

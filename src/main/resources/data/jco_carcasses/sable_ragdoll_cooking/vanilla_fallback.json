@@ -1,0 +1,119 @@
+{
+    "mob":  "#jco_carcasses:cookable_vanilla",
+    "required_mods":  [
+                          "sable_player_ragdoll"
+                      ],
+    "adapter":  "sable_player_ragdoll",
+    "tool":  "#minecraft:swords",
+    "harvest_count":  2,
+    "harvest_input":  "LEFT",
+    "action_ticks":  0,
+    "action_cooldown":  8,
+    "heat":  [
+                 "minecraft:campfire",
+                 "minecraft:soul_campfire"
+             ],
+    "lit_only":  true,
+    "cooking_ticks":  400,
+    "heat_distance":  {
+                          "near":  0.5,
+                          "range":  3.5,
+                          "maximum":  1.5,
+                          "curve":  1.2
+                      },
+    "cooked_loot_multiplier":  1.5,
+    "impact_multiplier":  0,
+    "cooking_feedback":  {
+                             "particles":  {
+                                               "id":  "minecraft:small_flame",
+                                               "count":  1,
+                                               "spread":  0.18,
+                                               "speed":  0.005
+                                           }
+                         },
+    "cooked_feedback":  {
+                            "sound":  {
+                                          "id":  "minecraft:block.campfire.crackle",
+                                          "volume":  0.7,
+                                          "pitch":  1.2
+                                      },
+                            "particles":  {
+                                              "id":  "minecraft:flame",
+                                              "count":  8,
+                                              "spread":  0.35,
+                                              "speed":  0.02
+                                          }
+                        },
+    "cooked_drops":  [
+                         {
+                             "source":  "minecraft:beef",
+                             "result":  "minecraft:cooked_beef",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cooked_beef",
+                             "result":  "minecraft:cooked_beef",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:porkchop",
+                             "result":  "minecraft:cooked_porkchop",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cooked_porkchop",
+                             "result":  "minecraft:cooked_porkchop",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:mutton",
+                             "result":  "minecraft:cooked_mutton",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cooked_mutton",
+                             "result":  "minecraft:cooked_mutton",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:chicken",
+                             "result":  "minecraft:cooked_chicken",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cooked_chicken",
+                             "result":  "minecraft:cooked_chicken",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:rabbit",
+                             "result":  "minecraft:cooked_rabbit",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cooked_rabbit",
+                             "result":  "minecraft:cooked_rabbit",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cod",
+                             "result":  "minecraft:cooked_cod",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cooked_cod",
+                             "result":  "minecraft:cooked_cod",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:salmon",
+                             "result":  "minecraft:cooked_salmon",
+                             "multiplier":  2
+                         },
+                         {
+                             "source":  "minecraft:cooked_salmon",
+                             "result":  "minecraft:cooked_salmon",
+                             "multiplier":  2
+                         }
+                     ]
+}

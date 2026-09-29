@@ -1,0 +1,34 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.144'
+}
+
+group = 'dev.jco.carcasses'
+version = mod_version
+base.archivesName = 'sable-ragdoll-cooking'
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories { mavenCentral() }
+neoForge { version = neo_version }
+
+def modsDir = file(findProperty('modsDir') ?: 'libs')
+dependencies {
+    compileOnly files(new File(modsDir, 'kubejs-neoforge-2101.7.2-build.377.jar'))
+    compileOnly files(new File(modsDir, 'rhino-2101.2.8-build.91.jar'))
+    compileOnly files(new File(modsDir, 'sable-neoforge-1.21.1-2.0.5.jar'))
+    compileOnly files(new File(modsDir, 'sable_player_ragdoll-1.21.1-0.7.5.jar'))
+    compileOnly files(new File(modsDir, 'ragdoll_reactions-1.21.1-0.7.0.jar'))
+    compileOnly zipTree(new File(modsDir, 'sable-neoforge-1.21.1-2.0.5.jar')).matching {
+        include 'META-INF/jarjar/sable-companion-common-1.21.1-1.6.0.jar'
+    }
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+processResources {
+    inputs.property('version', version)
+    filesMatching('META-INF/neoforge.mods.toml') { expand(version: version) }
+}
